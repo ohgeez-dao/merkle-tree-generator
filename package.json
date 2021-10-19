@@ -1,0 +1,53 @@
+{
+  "name": "merkle-tree-generator",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "LevX <team@levx.io>",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsc -p ./",
+    "start": "yarn build && node dist",
+    "prepublish": "yarn build",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "eslint --cache --fix",
+      "jest --bail --passWithNoTests --findRelatedTests",
+      "prettier --write"
+    ],
+    "*.md": "prettier --write"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/jest": "^26.0.20",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "eslint": "^7.20.0",
+    "eslint-plugin-jest": "^24.1.5",
+    "husky": ">=5",
+    "jest": "^26.6.3",
+    "lint-staged": ">=10",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.1",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "@metamask/providers": "^8.1.1",
+    "@pinata/sdk": "^1.1.23",
+    "@shoyunft/contracts": "^1.0.0-beta.3",
+    "@shoyunft/sdk.js": "^1.0.0-alpha.0",
+    "axios": "^0.22.0",
+    "bluzelle": "^3.0.9",
+    "ethers": "^5.4.7",
+    "keccak256": "^1.0.3",
+    "merkletreejs": "^0.2.24",
+    "readline-sync": "^1.4.10"
+  }
+}

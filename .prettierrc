@@ -1,0 +1,19 @@
+{
+  "overrides": [
+    {
+      "files": [
+        "**/*.js",
+        "**/*.ts"
+      ],
+      "options": {
+        "printWidth": 120,
+        "tabWidth": 4,
+        "useTabs": false,
+        "singleQuote": false,
+        "bracketSpacing": true,
+        "arrowParens": "avoid",
+        "explicitTypes": "always"
+      }
+    }
+  ]
+}
