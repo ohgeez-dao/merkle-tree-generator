@@ -17,5 +17,6 @@ const main = async () => {
     console.log("Root: " + getMerkleRoot(accounts));
     console.log("Path:");
     console.log(getMerkleProof(accounts, address));
+    fs.writeFileSync(filePath + ".json", JSON.stringify(accounts), "utf8");
 };
 main().catch(console.error);
