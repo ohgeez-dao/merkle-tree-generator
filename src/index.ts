@@ -1,11 +1,13 @@
 import fs from "fs";
 import { utils } from "ethers";
-import keccak256 from "keccak256";
 import { FILE, ADDRESS, AMOUNT } from "./constants";
 import { getMerkleProof, getMerkleRoot } from "./merkle-tree";
 
 const getLeaf = entry => {
-    if (typeof entry == "string") return keccak256(entry);
+    if (typeof entry == "string") {
+        if (entry.startsWith("0x")) return utils.keccak256(entry);
+        return utils.keccak256(utils.toUtf8Bytes(entry));
+    }
     return utils.solidityKeccak256(["address", "uint256"], [entry[0], utils.parseEther(entry[1])]);
 };
 
