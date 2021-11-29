@@ -45,6 +45,7 @@
     "@shoyunft/sdk.js": "^1.0.0-alpha.0",
     "axios": "^0.22.0",
     "bluzelle": "^3.0.9",
+    "dotenv": "^10.0.0",
     "ethers": "^5.4.7",
     "keccak256": "^1.0.3",
     "merkletreejs": "^0.2.24",
