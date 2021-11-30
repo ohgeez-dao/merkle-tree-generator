@@ -1,6 +1,6 @@
 import fs from "fs";
 import { utils } from "ethers";
-import { FILE, ADDRESS, AMOUNT } from "./constants";
+import { FILE, ADDRESS, AMOUNT, QUOTE_PATH } from "./constants";
 import { getMerkleProof, getMerkleRoot } from "./merkle-tree";
 
 const getLeaf = entry => {
@@ -16,7 +16,7 @@ const main = async () => {
     if (!path.startsWith("./") && !path.startsWith("../")) path = "./" + path;
     const list = fs
         .readFileSync(path, "utf8")
-        .split("\n")
+        .split(/[\r\n]{1,2}/)
         .map((line, index) => {
             if (index == 0) return null;
             const [address, amount] = line.split(",");
@@ -26,7 +26,9 @@ const main = async () => {
         .filter(account => !!account);
     console.log("Root:\n  " + getMerkleRoot(list, getLeaf));
     console.log("Path:");
-    console.log("  " + JSON.stringify(getMerkleProof(list, getLeaf, AMOUNT ? [ADDRESS, AMOUNT] : ADDRESS)));
-    fs.writeFileSync(path + ".json", JSON.stringify(list), "utf8");
+    let merklePath = JSON.stringify(getMerkleProof(list, getLeaf, AMOUNT ? [ADDRESS, AMOUNT] : ADDRESS));
+    if (!QUOTE_PATH) merklePath = merklePath.replace(/"/g, "");
+    console.log("  " + merklePath);
+    fs.writeFileSync(path + ".json", JSON.stringify(list, null, 2), "utf8");
 };
 main().catch(console.error);
