@@ -1,5 +1,5 @@
 {
-  "name": "merkle-tree-generator",
+  "name": "@levxdao/merkle-tree-generator",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,10 +8,13 @@
   "files": [
     "dist"
   ],
+  "bin": {
+    "gen-merkle-tree": "./dist/gen-merkle-tree"
+  },
   "scripts": {
     "build": "rimraf dist && tsc -p ./",
-    "start": "yarn build && node dist",
-    "prepublish": "yarn build",
+    "start": "yarn build && node dist/gen-merkle-tree",
+    "prepublish": "yarn build && chmod +x dist/gen-merkle-tree.js",
     "test": "jest"
   },
   "lint-staged": {
